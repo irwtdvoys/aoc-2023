@@ -13,7 +13,8 @@
 	// ./bin/run -d=1 -o=example -v
 
 	$helpers = [
-		1 => Trebuchet::class
+		1 => Trebuchet::class,
+		2 => CubeConundrum::class,
 	];
 
 	$options = getopt("d:o:vt", ["day:", "override:", "verbose", "time"]);
