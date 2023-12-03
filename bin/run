@@ -1,5 +1,6 @@
 #!/usr/bin/env php
 <?php
+	use App\CubeConundrum;
 	use App\Trebuchet;
 
 	ini_set("memory_limit", "256M");
