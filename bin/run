@@ -45,9 +45,29 @@
 
 	$end = hrtime(true);
 
+	function humanReadableTime(float $count, int $level = 0, int $decimalPlaces = 4): string
+	{
+		if ($count >= 1000 && $level <=3)
+		{
+			return humanReadableTime(($count / 1000), ($level + 1));
+		}
+
+		$result = round($count, $decimalPlaces);
+
+		$unit = match ($level)
+		{
+			0 => "ns",
+			1 => "μs",
+			2 => "ms",
+			3 => "s"
+		};
+
+		return $result . $unit;
+	}
+
 	if ($time)
 	{
 		$executionTime = $end - $start;
-		echo(($executionTime / 1000000) . "ms" . PHP_EOL);
+		echo(humanReadableTime($executionTime) . PHP_EOL);
 	}
 ?>
