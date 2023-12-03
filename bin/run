@@ -3,6 +3,7 @@
 	declare(strict_types=1);
 
 	use App\CubeConundrum;
+	use App\GearRatios;
 	use App\Trebuchet;
 
 	ini_set("memory_limit", "256M");
@@ -18,6 +19,7 @@
 	$helpers = [
 		1 => Trebuchet::class,
 		2 => CubeConundrum::class,
+		3 => GearRatios::class
 	];
 
 	$options = getopt("d:o:vt", ["day:", "override:", "verbose", "time"]);
