@@ -1,5 +1,8 @@
 #!/usr/bin/env php
 <?php
+	declare(strict_types=1);
+
+	use App\CubeConundrum;
 	use App\Trebuchet;
 
 	ini_set("memory_limit", "256M");
@@ -13,7 +16,8 @@
 	// ./bin/run -d=1 -o=example -v
 
 	$helpers = [
-		1 => Trebuchet::class
+		1 => Trebuchet::class,
+		2 => CubeConundrum::class,
 	];
 
 	$options = getopt("d:o:vt", ["day:", "override:", "verbose", "time"]);
@@ -33,7 +37,7 @@
 	(new $helpers[$day](
 		$day,
 		$verbose,
-		isset($override) ? ROOT . "data/" . str_pad($day, 2, "0", STR_PAD_LEFT) . "/" . $override : null
+		isset($override) ? ROOT . "data/" . str_pad((string)$day, 2, "0", STR_PAD_LEFT) . "/" . $override : null
 	))
 		->run()
 		->output()
@@ -41,9 +45,29 @@
 
 	$end = hrtime(true);
 
+	function humanReadableTime(float $count, int $level = 0, int $decimalPlaces = 4): string
+	{
+		if ($count >= 1000 && $level <=3)
+		{
+			return humanReadableTime(($count / 1000), ($level + 1));
+		}
+
+		$result = round($count, $decimalPlaces);
+
+		$unit = match ($level)
+		{
+			0 => "ns",
+			1 => "μs",
+			2 => "ms",
+			3 => "s"
+		};
+
+		return $result . $unit;
+	}
+
 	if ($time)
 	{
 		$executionTime = $end - $start;
-		echo(($executionTime / 1000000) . "ms" . PHP_EOL);
+		echo(humanReadableTime($executionTime) . PHP_EOL);
 	}
 ?>
