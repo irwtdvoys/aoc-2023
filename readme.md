@@ -10,4 +10,8 @@ Went for regex which made life pretty simple, part two errored as there is an is
 
 ##### Day 02
 
-Used a good data structure so was both tasks were quite straight forward. Wrote code for a wrongly anticipated part 2 but it was even simpler in the end.
+Used a good data structure so was both tasks were quite straight forward. Wrote code for a wrongly anticipated part 2, but it was even simpler in the end.
+
+##### Day 03
+
+Worked backwards from the found symbols then found adjacent digits to expand into full values. Probably over did the data structure.
