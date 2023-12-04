@@ -15,3 +15,7 @@ Used a good data structure so was both tasks were quite straight forward. Wrote 
 ##### Day 03
 
 Worked backwards from the found symbols then found adjacent digits to expand into full values. Probably over did the data structure.
+
+##### Day 04
+
+Calculated counts based on single card scores to and running tally avoid exponential growth.
