@@ -19,3 +19,7 @@ Worked backwards from the found symbols then found adjacent digits to expand int
 ##### Day 04
 
 Calculated counts based on single card scores to and running tally avoid exponential growth.
+
+##### Day 05
+
+Brute forced part 2 in reverse to reduce search space, only takes a couple of minutes so didn't bother improving.
