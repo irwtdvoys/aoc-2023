@@ -23,3 +23,7 @@ Calculated counts based on single card scores to and running tally avoid exponen
 ##### Day 05
 
 Brute forced part 2 in reverse to reduce search space, only takes a couple of minutes so didn't bother improving.
+
+##### Day 06
+
+Implemented a brute force approach as the numbers looks pretty small, optimised by finding first + last rather than searching all. Then reimplemented after using quadratic equations but it wasn't that much faster in really.
