@@ -7,6 +7,7 @@
 	use App\IfYouGiveASeedAFertilizer;
 	use App\Scratchcards;
 	use App\Trebuchet;
+	use App\WaitForIt;
 
 	ini_set("memory_limit", "256M");
 
@@ -24,6 +25,7 @@
 		3 => GearRatios::class,
 		4 => Scratchcards::class,
 		5 => IfYouGiveASeedAFertilizer::class,
+		6 => WaitForIt::class,
 	];
 
 	$options = getopt("d:o:vt", ["day:", "override:", "verbose", "time"]);
