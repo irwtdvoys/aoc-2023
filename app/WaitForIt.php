@@ -67,6 +67,17 @@
 			return $max - $min + 1;
 		}
 
+		public function quadraticRace(Race $race): int
+		{
+			$roots = Maths::quadraticRoots(-1, $race->time, -$race->distance);
+			return $this->differenceFromRoots(...$roots);
+		}
+
+		private function differenceFromRoots(float $from, float $to): int
+		{
+			return (int)(floor($to) - ceil($from) + 1);
+		}
+
 		public function run(): Result
 		{
 			$result = new Result(0, 0);
@@ -75,11 +86,11 @@
 
 			foreach ($this->races as $race)
 			{
-				$wins[] = $this->race($race);
+				$wins[] = $this->quadraticRace($race);
 			}
 
 			$result->part1 = array_product($wins);
-			$result->part2 = $this->race($this->final);
+			$result->part2 = $this->quadraticRace($this->final);
 
 			return $result;
 		}
