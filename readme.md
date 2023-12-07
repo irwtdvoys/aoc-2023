@@ -27,3 +27,7 @@ Brute forced part 2 in reverse to reduce search space, only takes a couple of mi
 ##### Day 06
 
 Implemented a brute force approach as the numbers looks pretty small, optimised by finding first + last rather than searching all. Then reimplemented after using quadratic equations but it wasn't that much faster in really.
+
+##### Day 07
+
+Implemented with a custom comparison function with build in sort (PHP uses quicksort). Generated a hand value with type as the most significant bit and a base 13 representation of the cards following. Part 2 just needed jokers assigned to most common card and a tweak to hand strength values.
