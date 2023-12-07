@@ -2,6 +2,7 @@
 <?php
 	declare(strict_types=1);
 
+	use App\CamelCards;
 	use App\CubeConundrum;
 	use App\GearRatios;
 	use App\IfYouGiveASeedAFertilizer;
@@ -26,6 +27,7 @@
 		4 => Scratchcards::class,
 		5 => IfYouGiveASeedAFertilizer::class,
 		6 => WaitForIt::class,
+		7 => CamelCards::class,
 	];
 
 	$options = getopt("d:o:vt", ["day:", "override:", "verbose", "time"]);
