@@ -31,3 +31,7 @@ Implemented a brute force approach as the numbers looks pretty small, optimised 
 ##### Day 07
 
 Implemented with a custom comparison function with build in sort (PHP uses quicksort). Generated a hand value with type as the most significant bit and a base 13 representation of the cards following. Part 2 just needed jokers assigned to most common card and a tweak to hand strength values.
+
+##### Day 08
+
+Build a graph for the data and traversed it for length. Part two used LCM of individual lengths.
