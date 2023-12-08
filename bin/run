@@ -2,13 +2,16 @@
 <?php
 	declare(strict_types=1);
 
+	use AoC\Result;
 	use App\CamelCards;
 	use App\CubeConundrum;
 	use App\GearRatios;
+	use App\HauntedWasteland;
 	use App\IfYouGiveASeedAFertilizer;
 	use App\Scratchcards;
 	use App\Trebuchet;
 	use App\WaitForIt;
+	use Cruxoft\Dump\StructureItem;
 
 	ini_set("memory_limit", "256M");
 
@@ -19,65 +22,168 @@
 	// ./bin/run --day 1 --override example --verbose
 	// ./bin/run --day 1 --override example --verbose --time
 	// ./bin/run -d=1 -o=example -v
+	// ./bin/run -a
 
-	$helpers = [
-		1 => Trebuchet::class,
-		2 => CubeConundrum::class,
-		3 => GearRatios::class,
-		4 => Scratchcards::class,
-		5 => IfYouGiveASeedAFertilizer::class,
-		6 => WaitForIt::class,
-		7 => CamelCards::class,
-	];
+	class Runner
+	{
+		public array $helpers = [
+			1 => Trebuchet::class,
+			2 => CubeConundrum::class,
+			3 => GearRatios::class,
+			4 => Scratchcards::class,
+			5 => IfYouGiveASeedAFertilizer::class,
+			6 => WaitForIt::class,
+			7 => CamelCards::class,
+			8 => HauntedWasteland::class,
+		];
 
-	$options = getopt("d:o:vt", ["day:", "override:", "verbose", "time"]);
+		public function run(int $day, bool $verbose = false, bool $timed = true, ?string $override = null): object
+		{
+			$start = hrtime(true);
+
+			/** @var Result $result */
+			$result = (new $this->helpers[$day](
+				$day,
+				$verbose,
+				isset($override) ? ROOT . "data/" . str_pad((string)$day, 2, "0", STR_PAD_LEFT) . "/" . $override : null
+			))
+				->run()
+			;
+
+			$end = hrtime(true);
+
+			$return = [
+				"Day" => $day,
+				"Part 1" => $result->part1,
+				"Part 2" => $result->part2,
+			];
+
+			if ($timed)
+			{
+				$executionTime = $end - $start;
+				$return['Time'] = $this->humanReadableTime($executionTime);
+			}
+
+			return (object)$return;
+		}
+
+		public function all(): void
+		{
+			$results = [];
+
+			foreach ($this->helpers as $day => $class)
+			{
+				echo("Running day " . $day . "...\r");
+				$result = $this->run($day);
+
+				$results[] = $result;
+			}
+
+			$this->display($results);
+		}
+
+		public function single(int $day, bool $verbose = false, bool $timed = false, ?string $override = null): void
+		{
+			if (!isset($this->helpers[$day]))
+			{
+				throw new Exception("Day " . $day . " missing from config");
+			}
+
+			$result = $this->run($day, $verbose, $timed, $override);
+
+			$this->display([$result]);
+		}
+
+		private function display(array $data): void
+		{
+			$tmp = new StructureItem($data);
+
+			$rows = $tmp->children;
+
+			$headers = [];
+			$sizes = [];
+
+			foreach ($rows[0]->children as $key => $value)
+			{
+				$headers[] = $key;
+				$sizes[$key] = mb_strlen($key);
+			}
+
+			foreach ($rows as $row)
+			{
+				foreach ($headers as $header)
+				{
+					$sizes[$header] = max($sizes[$header], strlen((string)$row->children[$header]->value));
+				}
+			}
+
+			$parts = [];
+
+			foreach ($headers as $header)
+			{
+				$parts[] = str_pad($header, $sizes[$header], " ", STR_PAD_BOTH);
+			}
+
+			$output = " | " . implode(" | ", $parts) . " | ";
+
+			echo(" " . str_repeat("-", mb_strlen($output) - 2) . " " . PHP_EOL);
+			echo($output . PHP_EOL);
+			echo(" " . str_repeat("-", mb_strlen($output) - 2) . " " . PHP_EOL);
+
+			foreach ($rows as $row)
+			{
+				$parts = [];
+
+				foreach ($headers as $header)
+				{
+					$value = (string)$row->children[$header]->value;
+					$adjustment = strlen($value) - mb_strlen($value);
+					$parts[] = str_pad($value, $sizes[$header] + $adjustment, " ", STR_PAD_LEFT);
+				}
+
+				echo(" | " . implode(" | ", $parts) . " | " . PHP_EOL);
+			}
+
+			echo(" " . str_repeat("-", mb_strlen($output) - 2) . " " . PHP_EOL);
+		}
+
+		private function humanReadableTime(float $count, int $level = 0, int $decimalPlaces = 4): string
+		{
+			if ($count >= 1000 && $level <=3)
+			{
+				return $this->humanReadableTime(($count / 1000), ($level + 1));
+			}
+
+			$result = round($count, $decimalPlaces);
+
+			$unit = match ($level)
+			{
+				0 => "ns",
+				1 => "μs",
+				2 => "ms",
+				3 => "s"
+			};
+
+			return $result . $unit;
+		}
+	}
+
+	$options = getopt("d:o:vta", ["day:", "override:", "verbose", "time", "all"]);
 
 	$day = (int)($options['day'] ?? $options['d'] ?? null);
 	$override = $options['override'] ?? $options['o'] ?? null;
 	$verbose = isset($options['verbose']) || isset($options['v']);
 	$time = isset($options['time']) || isset($options['t']);
+	$all = isset($options['all']) || isset($options['a']);
 
-	if (!isset($helpers[$day]))
+	$tmp = new Runner();
+
+	if ($all)
 	{
-		throw new Exception("Day " . $day . " missing from config");
+		$tmp->all();
 	}
-
-	$start = hrtime(true);
-
-	(new $helpers[$day](
-		$day,
-		$verbose,
-		isset($override) ? ROOT . "data/" . str_pad((string)$day, 2, "0", STR_PAD_LEFT) . "/" . $override : null
-	))
-		->run()
-		->output()
-	;
-
-	$end = hrtime(true);
-
-	function humanReadableTime(float $count, int $level = 0, int $decimalPlaces = 4): string
+	else
 	{
-		if ($count >= 1000 && $level <=3)
-		{
-			return humanReadableTime(($count / 1000), ($level + 1));
-		}
-
-		$result = round($count, $decimalPlaces);
-
-		$unit = match ($level)
-		{
-			0 => "ns",
-			1 => "μs",
-			2 => "ms",
-			3 => "s"
-		};
-
-		return $result . $unit;
-	}
-
-	if ($time)
-	{
-		$executionTime = $end - $start;
-		echo(humanReadableTime($executionTime) . PHP_EOL);
+		$tmp->single($day, $verbose, $time, $override);
 	}
 ?>
