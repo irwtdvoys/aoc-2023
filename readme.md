@@ -35,3 +35,7 @@ Implemented with a custom comparison function with build in sort (PHP uses quick
 ##### Day 08
 
 Build a graph for the data and traversed it for length. Part two used LCM of individual lengths.
+
+##### Day 09
+
+Not much to say really. Simple part 1 and just reversed the values and ran again for part 2.
