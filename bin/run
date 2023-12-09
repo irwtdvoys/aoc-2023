@@ -8,6 +8,7 @@
 	use App\GearRatios;
 	use App\HauntedWasteland;
 	use App\IfYouGiveASeedAFertilizer;
+	use App\MirageMaintenance;
 	use App\Scratchcards;
 	use App\Trebuchet;
 	use App\WaitForIt;
@@ -35,6 +36,7 @@
 			6 => WaitForIt::class,
 			7 => CamelCards::class,
 			8 => HauntedWasteland::class,
+			9 => MirageMaintenance::class,
 		];
 
 		public function run(int $day, bool $verbose = false, bool $timed = true, ?string $override = null): object
