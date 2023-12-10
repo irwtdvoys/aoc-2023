@@ -9,6 +9,7 @@
 	use App\HauntedWasteland;
 	use App\IfYouGiveASeedAFertilizer;
 	use App\MirageMaintenance;
+	use App\PipeMaze;
 	use App\Scratchcards;
 	use App\Trebuchet;
 	use App\WaitForIt;
@@ -37,6 +38,7 @@
 			7 => CamelCards::class,
 			8 => HauntedWasteland::class,
 			9 => MirageMaintenance::class,
+			10 => PipeMaze::class,
 		];
 
 		public function run(int $day, bool $verbose = false, bool $timed = true, ?string $override = null): object
