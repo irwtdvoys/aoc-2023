@@ -39,3 +39,7 @@ Build a graph for the data and traversed it for length. Part two used LCM of ind
 ##### Day 09
 
 Not much to say really. Simple part 1 and just reversed the values and ran again for part 2.
+
+##### Day 10
+
+Used line crossing counts to detect inside/outside for part 2, there's probably efficiency gain to be had there but it runs fast so left it as is.
