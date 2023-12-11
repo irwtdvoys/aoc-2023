@@ -4,6 +4,7 @@
 
 	use AoC\Result;
 	use App\CamelCards;
+	use App\CosmicExpansion;
 	use App\CubeConundrum;
 	use App\GearRatios;
 	use App\HauntedWasteland;
@@ -39,6 +40,7 @@
 			8 => HauntedWasteland::class,
 			9 => MirageMaintenance::class,
 			10 => PipeMaze::class,
+			11 => CosmicExpansion::class,
 		];
 
 		public function run(int $day, bool $verbose = false, bool $timed = true, ?string $override = null): object
