@@ -43,3 +43,7 @@ Not much to say really. Simple part 1 and just reversed the values and ran again
 ##### Day 10
 
 Used line crossing counts to detect inside/outside for part 2, there's probably efficiency gain to be had there but it runs fast so left it as is.
+
+##### Day 11
+
+Minor off-by-one error in part 2 due to how I was increasing the blank space but I was storing only galaxy positional data anyway so runs very fast. Spotted the Manhattan Distance so calculations were pretty simple.
