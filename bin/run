@@ -8,6 +8,7 @@
 	use App\CubeConundrum;
 	use App\GearRatios;
 	use App\HauntedWasteland;
+	use App\HotSprings;
 	use App\IfYouGiveASeedAFertilizer;
 	use App\MirageMaintenance;
 	use App\PipeMaze;
@@ -41,6 +42,7 @@
 			9 => MirageMaintenance::class,
 			10 => PipeMaze::class,
 			11 => CosmicExpansion::class,
+			12 => HotSprings::class
 		];
 
 		public function run(int $day, bool $verbose = false, bool $timed = true, ?string $override = null): object
