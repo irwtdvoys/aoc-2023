@@ -46,4 +46,8 @@ Used line crossing counts to detect inside/outside for part 2, there's probably 
 
 ##### Day 11
 
-Minor off-by-one error in part 2 due to how I was increasing the blank space but I was storing only galaxy positional data anyway so runs very fast. Spotted the Manhattan Distance so calculations were pretty simple.
+Minor off-by-one error in part 2 due to how I was increasing the blank space, but I was storing only galaxy positional data anyway so runs very fast. Spotted the Manhattan Distance so calculations were pretty simple.
+
+##### Day 12
+
+Nice recursion day. Included caching from the start so part 2 wasn't an issue.
