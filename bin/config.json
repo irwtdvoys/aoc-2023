@@ -1,0 +1,54 @@
+[
+	{
+		"day": 1,
+		"class": "Trebuchet"
+	},
+	{
+		"day": 2,
+		"class": "CubeConundrum"
+	},
+	{
+		"day": 3,
+		"class": "GearRatios"
+	},
+	{
+		"day": 4,
+		"class": "Scratchcards"
+	},
+	{
+		"day": 5,
+		"class": "IfYouGiveASeedAFertilizer"
+	},
+	{
+		"day": 6,
+		"class": "WaitForIt"
+	},
+	{
+		"day": 7,
+		"class": "CamelCards"
+	},
+	{
+		"day": 8,
+		"class": "HauntedWasteland"
+	},
+	{
+		"day": 9,
+		"class": "MirageMaintenance"
+	},
+	{
+		"day": 10,
+		"class": "PipeMaze"
+	},
+	{
+		"day": 11,
+		"class": "CosmicExpansion"
+	},
+	{
+		"day": 12,
+		"class": "HotSprings"
+	},
+	{
+		"day": 13,
+		"class": "PointOfIncidence"
+	}
+]
