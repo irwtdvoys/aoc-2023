@@ -55,3 +55,7 @@ Nice recursion day. Included caching from the start so part 2 wasn't an issue.
 ##### Day 13
 
 Fun task, made good use of PHP string and array functions for processing and collated mirror lines for each row, picking to common one. Part 2 took and columns that were 1 off and checked for smudge possibility.
+
+##### Day 14
+
+No issues, spent some time on part 2 optimising to move rocks in 1 step each and used serialisation for the cache identifier to allow state restoring to allow a single calculation at the end for final score.
