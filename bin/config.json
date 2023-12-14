@@ -50,5 +50,9 @@
 	{
 		"day": 13,
 		"class": "PointOfIncidence"
+	},
+	{
+		"day": 14,
+		"class": "ParabolicReflectorDish"
 	}
 ]
