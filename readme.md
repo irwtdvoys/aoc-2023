@@ -51,3 +51,7 @@ Minor off-by-one error in part 2 due to how I was increasing the blank space, bu
 ##### Day 12
 
 Nice recursion day. Included caching from the start so part 2 wasn't an issue.
+
+##### Day 13
+
+Fun task, made good use of PHP string and array functions for processing and collated mirror lines for each row, picking to common one. Part 2 took and columns that were 1 off and checked for smudge possibility.
