@@ -3,18 +3,6 @@
 	declare(strict_types=1);
 
 	use AoC\Result;
-	use App\CamelCards;
-	use App\CosmicExpansion;
-	use App\CubeConundrum;
-	use App\GearRatios;
-	use App\HauntedWasteland;
-	use App\HotSprings;
-	use App\IfYouGiveASeedAFertilizer;
-	use App\MirageMaintenance;
-	use App\PipeMaze;
-	use App\Scratchcards;
-	use App\Trebuchet;
-	use App\WaitForIt;
 	use Cruxoft\Dump\StructureItem;
 
 	ini_set("memory_limit", "256M");
@@ -30,38 +18,36 @@
 
 	class Runner
 	{
-		public array $helpers = [
-			1 => Trebuchet::class,
-			2 => CubeConundrum::class,
-			3 => GearRatios::class,
-			4 => Scratchcards::class,
-			5 => IfYouGiveASeedAFertilizer::class,
-			6 => WaitForIt::class,
-			7 => CamelCards::class,
-			8 => HauntedWasteland::class,
-			9 => MirageMaintenance::class,
-			10 => PipeMaze::class,
-			11 => CosmicExpansion::class,
-			12 => HotSprings::class
-		];
+		public array $helpers = [];
+
+		public function __construct()
+		{
+			$config = json_decode(file_get_contents(ROOT . "bin/config.json"));
+
+			foreach ($config as $next)
+			{
+				$this->helpers[$next->day] = "App\\" . $next->class;
+			}
+		}
 
 		public function run(int $day, bool $verbose = false, bool $timed = true, ?string $override = null): object
 		{
 			$start = hrtime(true);
 
-			/** @var Result $result */
-			$result = (new $this->helpers[$day](
+			$helper = (new $this->helpers[$day](
 				$day,
 				$verbose,
 				isset($override) ? ROOT . "data/" . str_pad((string)$day, 2, "0", STR_PAD_LEFT) . "/" . $override : null
-			))
-				->run()
-			;
+			));
+
+			/** @var Result $result */
+			$result = $helper->run();
 
 			$end = hrtime(true);
 
 			$return = [
 				"Day" => $day,
+				"Name" => $helper->name(),
 				"Part 1" => $result->part1,
 				"Part 2" => $result->part2,
 			];
@@ -152,7 +138,8 @@
 				{
 					$value = (string)$row->children[$header]->value;
 					$adjustment = strlen($value) - mb_strlen($value);
-					$parts[] = str_pad($value, $sizes[$header] + $adjustment, " ", STR_PAD_LEFT);
+					$pad = is_string($row->children[$header]->value) ? STR_PAD_RIGHT : STR_PAD_LEFT;
+					$parts[] = str_pad($value, $sizes[$header] + $adjustment, " ", $pad);
 				}
 
 				echo(" │ " . implode(" │ ", $parts) . " │ " . PHP_EOL);
