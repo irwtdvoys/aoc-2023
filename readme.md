@@ -59,3 +59,7 @@ Fun task, made good use of PHP string and array functions for processing and col
 ##### Day 14
 
 No issues, spent some time on part 2 optimising to move rocks in 1 step each and used serialisation for the cache identifier to allow state restoring to allow a single calculation at the end for final score.
+
+##### Day 15
+
+Surprisingly straight forward, implemented the tasks and they ran in a couple of ms. PHP array methods are pretty well optimised.
