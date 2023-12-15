@@ -19,7 +19,6 @@
 
 			$raw = parent::load($override);
 
-
 			$this->symbols = array_unique(str_split(preg_replace("/[0-9\.\n]/", "", $raw)));
 
 			$lines = explode(PHP_EOL, $raw);

@@ -54,5 +54,9 @@
 	{
 		"day": 14,
 		"class": "ParabolicReflectorDish"
+	},
+	{
+		"day": 15,
+		"class": "LensLibrary"
 	}
 ]
