@@ -58,5 +58,9 @@
 	{
 		"day": 15,
 		"class": "LensLibrary"
+	},
+	{
+		"day": 18,
+		"class": "LavaductLagoon"
 	}
 ]
