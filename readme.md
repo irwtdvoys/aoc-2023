@@ -63,3 +63,7 @@ No issues, spent some time on part 2 optimising to move rocks in 1 step each and
 ##### Day 15
 
 Surprisingly straight forward, implemented the tasks and they ran in a couple of ms. PHP array methods are pretty well optimised.
+
+##### Day 18
+
+Implemented the Shoelace Theorem that I should have used in day 10 which when combined with perimeter calculations simplifies both parts.
