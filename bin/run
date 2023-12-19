@@ -32,7 +32,11 @@
 
 		public function run(int $day, bool $verbose = false, bool $timed = true, ?string $override = null): object
 		{
-			$start = hrtime(true);
+			if ($timed)
+			{
+				$start = hrtime(true);
+				memory_reset_peak_usage();
+			}
 
 			$helper = (new $this->helpers[$day](
 				$day,
@@ -56,6 +60,7 @@
 			{
 				$executionTime = $end - $start;
 				$return['Time'] = $this->humanReadableTime($executionTime);
+				$return['Memory'] = round(memory_get_peak_usage()/pow(2, 20), 4) . " MiB";
 			}
 
 			return (object)$return;
@@ -177,14 +182,14 @@
 	$time = isset($options['time']) || isset($options['t']);
 	$all = isset($options['all']) || isset($options['a']);
 
-	$tmp = new Runner();
+	$runner = new Runner();
 
 	if ($all)
 	{
-		$tmp->all();
+		$runner->all();
 	}
 	else
 	{
-		$tmp->single($day, $verbose, $time, $override);
+		$runner->single($day, $verbose, $time, $override);
 	}
 ?>

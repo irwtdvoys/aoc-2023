@@ -71,3 +71,7 @@ Didn't have a chance to do the weekend tasks on time, broke the path down into s
 ##### Day 18
 
 Implemented the Shoelace Theorem that I should have used in day 10 which when combined with perimeter calculations simplifies both parts.
+
+##### Day 19
+
+Nice to have a very separate part 2. Processed part 1 normally and calculated ranges recursively for part 2. Should use the same technique to improve the run time on day5... 
