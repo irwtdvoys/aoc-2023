@@ -64,7 +64,15 @@
 		"class": "TheFloorWillBeLava"
 	},
 	{
+		"day": 17,
+		"class": "ClumsyCrucible"
+	},
+	{
 		"day": 18,
 		"class": "LavaductLagoon"
+	},
+	{
+		"day": 19,
+		"class": "Aplenty"
 	}
 ]
