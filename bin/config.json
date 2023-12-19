@@ -60,6 +60,10 @@
 		"class": "LensLibrary"
 	},
 	{
+		"day": 16,
+		"class": "TheFloorWillBeLava"
+	},
+	{
 		"day": 18,
 		"class": "LavaductLagoon"
 	}
