@@ -74,5 +74,9 @@
 	{
 		"day": 19,
 		"class": "Aplenty"
+	},
+	{
+		"day": 20,
+		"class": "PulsePropagation"
 	}
 ]
