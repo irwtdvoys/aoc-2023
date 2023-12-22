@@ -75,3 +75,7 @@ Implemented the Shoelace Theorem that I should have used in day 10 which when co
 ##### Day 19
 
 Nice to have a very separate part 2. Processed part 1 normally and calculated ranges recursively for part 2. Should use the same technique to improve the run time on day5... 
+
+##### Day 20
+
+Implemented a full simulation for part 1. Looked at the raw input file for targets that trigger part 2 output. Ran system until they all triggered once and used LCM to calculate final value. 
